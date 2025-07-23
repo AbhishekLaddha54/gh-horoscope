@@ -15,10 +15,14 @@ A fun and cosmic command-line tool that gives you a **daily horoscope** based on
 
 ## 📦 Installation
 
-### ⚡ Option 1: Run from source (requires Go)
+### To install
 
 ```bash
-git clone https://github.com/AbhishekLaddha54/github-horoscope
-cd github-horoscope
-go mod tidy
-go run main.go --repo owner/repo-name
+gh extension install AbhishekLaddha54/gh-horoscope
+```
+### To run
+```bash
+gh horoscope --repo owner/repo
+```
+
+
