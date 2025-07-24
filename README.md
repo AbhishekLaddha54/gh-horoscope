@@ -24,10 +24,6 @@ gh extension install AbhishekLaddha54/gh-horoscope
 ```bash
 gh horoscope --repo owner/repo
 ```
-### To run and get data of your Private Repo you need to login to gh first using
-```bash
-gh auth login
-```
 
 
 
