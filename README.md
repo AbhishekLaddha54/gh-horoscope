@@ -20,9 +20,14 @@ A fun and cosmic command-line tool that gives you a **daily horoscope** based on
 ```bash
 gh extension install AbhishekLaddha54/gh-horoscope
 ```
-### To run
+### To run and get data of any Public Repo
 ```bash
 gh horoscope --repo owner/repo
 ```
+### To run and get data of your Private Repo you need to login to gh first using
+```bash
+gh auth login
+```
+
 
 
