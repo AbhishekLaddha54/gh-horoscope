@@ -62,7 +62,7 @@ func run(cmd *cobra.Command, args []string) error {
 		return err
 	}
 
-	// Determine repository context
+	
 	var repo repository.Repository
 	if repoFlag != "" {
 		repo, err = repository.Parse(repoFlag)
@@ -79,13 +79,13 @@ func run(cmd *cobra.Command, args []string) error {
 	owner := repo.Owner()
 	name := repo.Name()
 
-	// Current user
+	
 	var user struct{ Login string }
 	if err := client.Get("user", &user); err != nil {
 		return err
 	}
 
-	// Issues
+	
 	var issues []Issue
 	issuesURL := fmt.Sprintf("repos/%s/%s/issues?state=open&per_page=100", owner, name)
 	if err := client.Get(issuesURL, &issues); err != nil {
@@ -93,7 +93,7 @@ func run(cmd *cobra.Command, args []string) error {
 		return err
 	}
 
-	// Filter out PRs from issues (GitHub's /issues includes both issues and PRs)
+
 	filteredIssues := make([]Issue, 0)
 	for _, i := range issues {
 		if i.PullRequest == nil { // This works if you include a PullRequest field
@@ -101,7 +101,7 @@ func run(cmd *cobra.Command, args []string) error {
 		}
 	}
 
-	// Pull requests
+	
 	var prs []PullRequest
 	prsURL := fmt.Sprintf("repos/%s/%s/pulls?state=open&per_page=100", owner, name)
 	if err := client.Get(prsURL, &prs); err != nil {
@@ -109,7 +109,6 @@ func run(cmd *cobra.Command, args []string) error {
 		return err
 	}
 
-	// Generate horoscope
 	sign := zodiac[int(time.Now().Unix()/86400)%len(zodiac)]
 	fortune := fortunes[rand.Intn(len(fortunes))]
 
@@ -118,7 +117,7 @@ func run(cmd *cobra.Command, args []string) error {
 	fmt.Printf("📊 %d open issues, %d open PRs\n", len(filteredIssues), len(prs))
 	fmt.Printf("🔮 %s\n\n", fortune)
 
-	// Render table
+	
 	tp := tableprinter.New(os.Stdout, true, 120)
 	tp.AddField("Type")
 	tp.AddField("#")
